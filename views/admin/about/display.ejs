@@ -1,0 +1,90 @@
+<%- include('../../header.ejs') %>
+<br><br><br><br>
+    <section class="dashboard-wrap mtb-40">
+        <div class="container">
+            <div class="body-content">
+                <div class="row">
+                    <div class="col-md-3">
+                        <%- include('../blog/sidbar.ejs') %>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="dash-right">
+                            <div class="dash-header">
+                                <div class="dash-title">
+                                    <h1>About</h1>
+                                </div>
+                                <div class="dash-nav">
+                                    <a href="blog-form.html"></a>
+
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>About</th>
+                                    <th>Action</th>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <%= a.about %>
+                                    </td>
+
+                                    <td>
+                                        <a href="/admin/aboutedit/<%= a._id %>" class="btn btn-info btn-sm">Edit</a>
+
+                                    </td>
+
+                                </tr>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- modal blog create -->
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">About</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/insertabout" method="post" enctype="multipart/form-data">
+                        <div class="md-3">
+                            <label for="">About</label>
+                            <textarea type="text" name="about" class="form-control">
+    </textarea>
+                        </div>
+
+
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    ...
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <br><br><br><br>
+
+
+
+
+    </section>
+    <%- include('../../footer.ejs') %>

@@ -1,0 +1,43 @@
+<%- include('../../header.ejs')  %>
+<section class="dashboard-wrap mtb-40">
+    <div class="container">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-3">
+                    <%- include('../blog/sidbar.ejs') %>  
+                </div>
+                <div class="col-md-9">
+                    <div class="dash-right">
+                        <div class="dash-header">
+                            <div class="dash-title">
+                                <h1>About Edit </h1>
+                            </div>
+                            <div class="dash-nav">
+                                <a href="blog-form.html"></a>
+                            </div>
+                        </div>
+                            <form action="/admin/aboutupdate/<%= a._id %>" method="post" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                <label for="">About</label>
+                                <textarea name="about" class="form-control" id="" cols="30" rows="10"> <%=
+                                     a.about %></textarea>
+                                     <br>
+                                <button type="submit" class="btn btn-info">Update</button>
+         
+                            </form>  
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+
+                
+                
+
+
+
+                <%- include('../../footer.ejs')  %>

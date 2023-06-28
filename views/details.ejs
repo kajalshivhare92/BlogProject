@@ -1,0 +1,151 @@
+<%- include('./header.ejs') %>
+
+
+    <section class="blog-detail mtb-40" style="margin-top: 8rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="blog-left">
+                        <h1>
+                            <%= d.title %>
+                        </h1>
+                        <div class="posted-on">
+                            <p><span>
+                                    <%= d.createdAt.toLocaleDateString() %>
+                                </span></p>
+                        </div>
+                        <div class="detail-img">
+                            <img src="<%= d.image.url %>" width="500px" height="400px" alt="blog1" />
+                        </div>
+                        <div class="blog-desc">
+                            <p>
+                                <%= d.description %>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-right">
+                        <div class="right-widget recent-post">
+                            <h3>Recent Blogs</h3>
+                            <a href="#">
+                                <% r.forEach((recentitem)=>{ %>
+                                    <div class="rb-box">
+                                        <div class="rb-box-img">
+                                            <img src="<%= recentitem.image.url %>" alt="blog1" />
+                                        </div>
+                                        <div class="rb-box-desc">
+                                            <h4 style="font-size: 13px;">
+                                                <%= recentitem.title %>
+                                            </h4>
+                                            <p>
+                                                <%= recentitem.createdAt.toLocaleDateString() %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                            </a>
+
+
+                            <div class="right-widget categories">
+                                <h3>Categories</h3>
+                                <% c.forEach((categoryitem)=>{ %>
+                                    <ul>
+                                        <li><a href="/bloglist/<%= categoryitem.name %>">
+                                                <%= categoryitem.name %>
+                                            </a></li>
+
+                                    </ul>
+                                    <% }) %>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!--like-->
+    <div class="container d-flex ">
+        <form action="/like" method="post">
+            <input type="hidden" name="postid" value="<%= d._id %>">
+            <button type="submit" name="like" value="like" class="btn btn-default" style="margin-top: -76px;">
+                <i class="fa-solid fa-thumbs-up">
+                    <%= d.likes.length %>
+                </i>
+
+            </button>
+        </form> 
+        <br>   
+        <form action="/dislikes" method="post">
+            <input type="hidden" name="postid" value="<%= d._id %>">
+            <button type="submit" name="dislike" value="dislike" class="btn btn-default" style="margin-top: -76px;    margin-left: 35px;
+            ">
+                <i class="fa-solid fa-thumbs-down">
+                    <%= d.dislikes.length %>
+                </i>
+            </button>
+        </form>     
+       
+    </div>
+    <section class="mb-3 container">
+        <div class="card  bg-light">
+            <div class="card-body">
+                <!--comment form-->
+                <h5>Leave a Comment</h5>
+                <form action="/add-comment" method="post" class="mb-4" id="comment-form">
+                    <input type="hidden" name="postid" value="<%= d._id %>">
+                    <input type="text" name="username" class="form-control mb-3" placeholder="enter your name" required>
+                    <textarea class="form-control" name="comment" required row="" 3 placeholder="comment"></textarea>
+                    <input type="submit" class="btn btn-primary mt-3">
+                </form>
+                <p class="com-status" style="color :#008000;"></p>
+                <!--comment with nexted comments-->
+                <% if(d.comments.length>= 0){
+                    d.comments =d.comments.reverse();
+                    d.comments.forEach((c)=>{
+                    %>
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <img class="" class="roundend-circle">
+                            <h6><b>
+                                    <%= c.username %>
+                                </b></h6>
+                            <p>
+                                <%= c.comment %>
+                            </p>
+                        </div>
+                    </div>
+                    <% }) } %>
+
+
+            </div>
+        </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+
+    <!-- <script>
+        $(document).ready(function () {
+            $('#comment-form').submit(function (event) {
+                event.preventDefault()
+
+                var formData = $(this).serialize();
+                
+
+                $.ajax({
+                    url: "/add-comment",
+                    type: "POST",
+                    data: formData,
+                    success: function (data) {
+                        console.log(data)
+                    }
+                });
+            })
+        })
+
+    </script> -->
+
+    <%- include('./footer.ejs') %>

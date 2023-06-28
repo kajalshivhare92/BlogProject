@@ -1,0 +1,26 @@
+<%- include('./header.ejs') %>
+<br><br><br><br>
+  <section class="blog-list mtb-40">
+    <div class="container">
+      <h1>Blogs</h1>
+      <div class="row">
+        <% d.forEach((c)=>{ %>
+          <div class="col-md-4">
+            <div class="card shadow-lg h-100">
+              <img src="<%= c.image.url %>" height="280px" alt="" />
+              <div class="card-body">
+                <h3>
+                  <%= c.title %>
+                </h3>
+                <p>
+                  <%= c.description %>
+                </p>
+                <a href="/details/<%= c._id %>" class="btn btn-danger">Read more...</a>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+    </div>
+  </section>
+  <%- include('./footer.ejs') %>

@@ -1,0 +1,86 @@
+<%- include('../../header.ejs')  %>
+<br><br><br><br>
+<section class="dashboard-wrap mtb-40">
+    <div class="container">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-3">
+                    <%- include('../blog/sidbar.ejs') %>  
+                </div>
+                  
+                    <div class="col-md-9">
+                        <div class="dash-right">
+                            <div class="dash-header">
+                                <div class="dash-title">
+                                    <h1>Categories</h1>
+                                </div>
+                                <div class="dash-nav">
+                                    <a href="blog-form.html"></a>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Add Category
+                                      </button>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>#ID</th>
+                                    <th> Category Name</th>
+                                    <th>Action</th>
+                                </tr>
+                                <% d.forEach((item)=>{ %>
+                                <tr>
+                                    
+                                    <td><%= item._id %></td>
+                                    <td><%= item.name %></td>
+                                    
+                                    <td>
+                                        <a href="/admin/categoryedit/<%= item._id %>" class="btn btn-info btn-sm">Edit</a>
+                                        <a href="/admin/categorydelete/<%= item._id %>" class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
+ 
+                                </tr>
+                                <% }) %>
+                            </table>
+                        </div>   
+                    </div>
+        		</div>
+            </div>
+    	</div>
+    </section>
+    <!-- modal blog create -->
+<!-- Button trigger modal -->
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Category List</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/insertcategory" method="post" enctype="multipart/form-data">
+            <div class="md-3">
+                <label for="">Name</label>
+                <input type="text" name="name" class="form-control">
+            </div>
+            
+
+
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          ...
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+                     
+              
+    
+   <br><br><br><br>                 
+<%- include('../../footer.ejs')  %>
