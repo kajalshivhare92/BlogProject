@@ -21,7 +21,6 @@ router.get('/blog', FrontendController.blog)
 router.get('/details/:id', FrontendController.details)
 router.get('/login', FrontendController.login)
 router.get('/register', FrontendController.register)
-
 router.get('/bloglist/:name', FrontendController.bloglist)
 
 
@@ -34,7 +33,6 @@ router.post('/verifylogin', AdminController.verifylogin)
 router.get('/logout',AdminController.logout)
 router.get('/userdisplay',auth,AdminController.UserDisplay)
 router.get('/admin/userdelete/:id',auth,AdminController.userdelete)
-router.post('/admin/change_password',auth,AdminController.change_password)
 
 
 

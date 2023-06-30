@@ -192,15 +192,7 @@ class AdminController {
         }
     }
    
-   static change_password = async(req, res) => {
-     try{
-        const{name,email,id,image}= req.user
-        console.log(req.body)
-     }
-     catch(error){
-        console.log(error)
-     }
-   }
+   
    
 
 
